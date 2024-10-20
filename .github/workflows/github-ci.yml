@@ -22,17 +22,25 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20.18.0"
+          node-version: '20.18.0'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build the Application
-        run: npm run build
+      - name: Build the Application for Windows
+        if: matrix.os == 'windows-latest'
+        run: npm run build:win
+
+      - name: Build the Application for Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: npm run build:linux
+
+      - name: Build the Application for MacOS
+        if: matrix.os == 'macos-latest'
+        run: npm run build:mac
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.4.3
         with:
           name: electron-build-${{ matrix.os }}
-          path: build/
-    
+          path: dist/
