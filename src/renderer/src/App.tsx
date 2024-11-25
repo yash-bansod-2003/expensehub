@@ -1,12 +1,12 @@
 import { Button } from '@renderer/components/ui/button'
+import { ModeToggle } from '@renderer/components/mode-toggle'
+import { toast } from 'sonner'
+
 function App(): JSX.Element {
   return (
-    <div className="flex justify-center items-center h-screen w-screem">
-      <h1>
-        Hello <span className="text-red-700 underline text-4xl">Yash Bansod</span>
-      </h1>
-      <p>This is a initial stage of expense hub application</p>
-      <Button onClick={() => console.log('hello')}>Click here</Button>
+    <div className="flex justify-center items-center h-screen w-screen">
+      <Button onClick={() => toast.success('Hello world')}>Click here</Button>
+      <ModeToggle />
     </div>
   )
 }
